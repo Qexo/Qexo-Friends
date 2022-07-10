@@ -56,6 +56,7 @@
         </div>
     </div>
 </article>
+<script src="https://recaptcha.net/recaptcha/api.js?render=reCaptcha密钥"></script>
 <script>
 function TestUrl(url) {
     var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
@@ -88,35 +89,40 @@ function askFriend (event) {
         return;
     }
     event.target.classList.add('is-loading');
-    $.ajax({
-        type: 'get',
-        cache: false,
-        url: url,
-        dataType: "jsonp", //跨域采用jsonp方式 
-        async: false,
-        processData: false,
-        //timeout:10000, //超时时间，毫秒
-        complete: function (data) {
-            if(data.status==200){
-            $.ajax({
-                type: 'POST',
-                dataType: "json",
-                data: {
-                    "name": name,
-                    "url": url,
-                    "image": image,
-                    "description": des,
-                },
-                url: 'https://my.oplog.cn/pub/ask_friend/',
-                success: function (data) {
-                    alert(data.msg);
+    grecaptcha.ready(function() {
+          grecaptcha.execute('reCaptcha密钥', {action: 'submit'}).then(function(token) {
+              $.ajax({
+                type: 'get',
+                cache: false,
+                url: url,
+                dataType: "jsonp",
+                async: false,
+                processData: false,
+                //timeout:10000, 
+                complete: function (data) {
+                    if(data.status==200){
+                    $.ajax({
+                        type: 'POST',
+                        dataType: "json",
+                        data: {
+                            "name": name,
+                            "url": url,
+                            "image": image,
+                            "description": des,
+                            "verify": token,
+                        },
+                        url: 'https://QEXO域名/pub/ask_friend/',
+                        success: function (data) {
+                            alert(data.msg);
+                        }
+                    });}
+                    else{
+                        alert("URL无法连通!");
+                    }
+                    event.target.classList.remove('is-loading');
                 }
-            });}
-            else{
-                alert("URL无法连通!");
-            }
-            event.target.classList.remove('is-loading');
-        }
+          });
+        });
     });
 }
 </script>
