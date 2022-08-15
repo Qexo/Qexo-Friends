@@ -83,7 +83,6 @@
   opacity: 0.9;
   margin-left: 10px;
   padding-bottom: 15px;
-  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .qexo-friends a {
@@ -118,6 +117,7 @@
   box-shadow: -1px 5px 10px 0px rgb(50 50 93 / 10%),
     0px 0px 10px rgb(0 0 0 / 7%) !important;
   display: inline-block !important;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 @media screen and (min-device-width: 600px) {
