@@ -83,6 +83,7 @@
   opacity: 0.9;
   margin-left: 10px;
   padding-bottom: 15px;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .qexo-friends a {
