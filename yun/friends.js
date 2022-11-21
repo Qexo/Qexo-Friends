@@ -1,4 +1,4 @@
-function loadQexoFriends(id, url) {
+function loadQexoFriends(id, url, color) {
     var uri = url + "/pub/friends/";
     var loadStyle = '<center><div class="qexo_loading"><div class="qexo_part"><div style="display: flex; justify-content: center"><div class="qexo_loader"><div class="qexo_inner one"></div><div class="qexo_inner two"></div><div class="qexo_inner three"></div></div></div></div><p style="text-align: center; display: block">友链加载中...</p></div><center>';
     document.getElementById(id).className = "friend-content";
