@@ -10,7 +10,7 @@ function loadQexoFriends(id, url, color) {
                     var friends = res["data"];
                     document.getElementById(id).innerHTML = '<ul class="link-items">';
                     for (let i = 0; i < friends.length; i++) {
-                        document.getElementById(id).innerHTML += '<li class="link-item" id="' + friends[i]["name"] + '" style="--primary-color:'+color+'"><a class="link-url" href="' + friends[i]["url"] + '" title="' + friends[i]["description"] + '" alt="portrait" target="_blank" rel="friend"><div class="link-left"><img class="link-avatar" alt="哎呀，图片丢了" loading="lazy" src="' + friends[i]["image"] + '" onerror="onAvatarError(this)"></div><div class="link-info"><div class="link-blog">' + friends[i]["name"] + '</div><div class="link-desc">' + friends[i]["description"] + '</div></div></a></li>';
+                        document.getElementById(id).innerHTML += '<li class="link-item" id="' + friends[i]["name"] + '" style="--primary-color:'+color+'"><a class="link-url" href="' + friends[i]["url"] + '" title="' + friends[i]["description"] + '" alt="portrait" target="_blank" rel="friend"><div class="link-left"><img class="link-avatar" style="max-width: unset;" alt="哎呀，图片丢了" loading="lazy" src="' + friends[i]["image"] + '" onerror="onAvatarError(this)"></div><div class="link-info"><div class="link-blog">' + friends[i]["name"] + '</div><div class="link-desc">' + friends[i]["description"] + '</div></div></a></li>';
                     }
                     document.getElementById(id).innerHTML += '</ul><br>';
                 } else {
