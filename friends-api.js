@@ -13,24 +13,31 @@ function friend_api() {
     var logo= document.getElementById('qexo_friend_logo').value;
     var uri = qexo_url + '/pub/ask_friend/';
     var body='name='+encodeURIComponent(name)+'&url='+encodeURIComponent(website)+'&image='+encodeURIComponent(logo)+'&description='+encodeURIComponent(introduction)
-    console.log(body);    
+    document.getElementById('qexo-friend-btn').style.color='#000';
+    document.getElementById('qexo-friend-btn').style.backgroundColor='#fff';
+    document.getElementById('qexo-friend-btn').innerHTML='…';
     fetch(uri, {
         method: 'post',
         body: body,
         headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded'
         }
     }).then(function(data){
         if (data.ok){
             data.json().then(function(res){
+                document.getElementById('qexo-friend-btn').style.color='#fff';
                 if (res["status"]) {
-                    alert("提交成功，请等待博主确认！我们不再提醒你结果，谢谢！");
+                    document.getElementById('qexo-friend-btn').style.backgroundColor='#2dce89';
+                    document.getElementById('qexo-friend-btn').innerHTML='提交成功，请等待博主确认！我们不再提醒你结果，谢谢！';
                 } else {
-                    alert("友链申请失败 提示："+res["msg"]);
+                    document.getElementById('qexo-friend-btn').style.backgroundColor='#f5365c';
+                    document.getElementById('qexo-friend-btn').innerHTML="友链申请失败 提示："+res["msg"];
                 }
             });
         } else {
-            alert("网络异常！");
+            document.getElementById('qexo-friend-btn').style.color='#fff';
+            document.getElementById('qexo-friend-btn').style.backgroundColor='#f5365c';
+            document.getElementById('qexo-friend-btn').innerHTML="网络异常！";
         }
     });
 }
