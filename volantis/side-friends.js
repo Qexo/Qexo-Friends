@@ -35,7 +35,7 @@ function loadQexoFriends(id, url) {
                         <a class="flat-box" title="${friends[i]["description"]}" target="_blank" rel="noopener" href="${friends[i]["url"]}">
                         <div class="name">
                         <img src="${friends[i]["image"]}"  height="20" width="20" style="border-radius: 100%;">
-                        ${friends[i]["name"]}
+                        <p>${friends[i]["name"]}</p>
                         </div>
                         </a>
                         </li>`; 
