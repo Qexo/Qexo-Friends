@@ -8,11 +8,11 @@ function loadQexoFriends(id, url) {
             data.json().then(function(res){
             if (res["status"]) {
                     var friends = res["data"];
-                    document.getElementById(id).innerHTML = "";
+                    let content = "";
                     for (let i = 0; i < friends.length; i++) {
-                        document.getElementById(id).innerHTML += '<p><a target="_blank" href="' + friends[i]["url"] + '" title="' + friends[i]["name"] + '" class="qexo-friendurl"></p><div class="qexo-frienddiv"><div class="qexo-frienddivleft"><img class="qexo-myfriend" src="' + friends[i]["image"] + '"></div><div class="qexo-frienddivright"><span style="font-weight: bold;">' + friends[i]["name"] + '</span><br>' + friends[i]["description"] + '</div></div></a>';
+                        content += '<p><a target="_blank" href="' + friends[i]["url"] + '" title="' + friends[i]["name"] + '" class="qexo-friendurl"></p><div class="qexo-frienddiv"><div class="qexo-frienddivleft"><img class="qexo-myfriend" src="' + friends[i]["image"] + '"></div><div class="qexo-frienddivright"><span style="font-weight: bold;">' + friends[i]["name"] + '</span><br>' + friends[i]["description"] + '</div></div></a>';
                     }
-                    document.getElementById(id).innerHTML += '';
+                    document.getElementById(id).innerHTML = content + "";
                 } else {
                     alert("友链载入失败!");
                 }
