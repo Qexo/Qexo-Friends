@@ -8,11 +8,13 @@ function loadQexoFriends(id, url) {
             data.json().then(function(res){
                 if (res["status"]) {
                     var friends = res["data"];
-                    let content = "<div class=\"group-body\">";
+
+                    let ls = ["<div class=\"group-body\">" + "<div class=\"grid-box\">" ];
                     for (let i = 0; i < friends.length; i++) {
-                        content = `<div class="user-card" title="${friends[i]["description"]}"><a class="card-link" href="${friends[i]["url"]}" rel="external nofollow noopener noreferrer" target="_blank"><img onError="this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/3442075.svg';" src="${friends[i]["image"]}"><div class="name"><span>${friends[i]["name"]}</span></div></a></div>`;
+                        ls.push(`<div class="user-card" title="${friends[i]["description"]}"><a class="card-link" href="${friends[i]["url"]}" rel="external nofollow noopener noreferrer" target="_blank"><img onError="this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/3442075.svg';" src="${friends[i]["image"]}"><div class="name"><span>${friends[i]["name"]}</span></div></a></div>`);
                     }
-                    document.getElementById(id).innerHTML = "<div class=\"grid-box\">" + content + "</div></div>";
+                    ls.push('</div>')
+                    document.getElementById(id).innerHTML = ls.join('') + "</div>";
                 } else {
                     alert("友链载入失败!");
                 }
