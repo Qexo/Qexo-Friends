@@ -1,6 +1,7 @@
 function qexo_friend_api(id, url, reCaptcha = '') {
-    qexo_url = url;
-    Qexo_reCaptcha_Key = reCaptcha
+    'use strict';
+    var qexo_url = url;
+    var Qexo_reCaptcha_Key = reCaptcha;
     var loadStyle = '<div class="qexo_loading"><div class="qexo_part"><div style="display: flex; justify-content: center"><div class="qexo_loader"><div class="qexo_inner one"></div><div class="qexo_inner two"></div><div class="qexo_inner three"></div></div></div></div><p style="text-align: center; display: block">友链申请加载中...</p></div>';
     document.getElementById(id).className = "friend-api";
     document.getElementById(id).innerHTML = loadStyle;
@@ -8,7 +9,7 @@ function qexo_friend_api(id, url, reCaptcha = '') {
 }
 
 function friend_api() {
-
+    'use strict';
     document.getElementById('qexo-friend-btn').style.color = '#000';
     document.getElementById('qexo-friend-btn').style.backgroundColor = '#fff';
     document.getElementById('qexo-friend-btn').innerHTML = '…';
@@ -35,11 +36,11 @@ function friend_api() {
         if (token) {
             body["verify"] = token;
         }
-        data = ''
-        for (i in body) {
-            data += `&${i}=${encodeURIComponent(body[i])}`
+        let data = '';
+        for (let i in body) {
+            data += `&${i}=${encodeURIComponent(body[i])}`;
         }
-        data = data.slice(1)
+        data = data.slice(1);
         fetch(uri, {
             method: 'post', body: data, headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -48,12 +49,12 @@ function friend_api() {
             if (data.ok) {
                 data.json().then(function (res) {
                     document.getElementById('qexo-friend-btn').style.color = '#fff';
-                    if (res["status"]) {
+                    if (res.status) {
                         document.getElementById('qexo-friend-btn').style.backgroundColor = '#2dce89';
                         document.getElementById('qexo-friend-btn').innerHTML = '提交成功，请等待博主确认！我们不再提醒你结果，谢谢！';
                     } else {
                         document.getElementById('qexo-friend-btn').style.backgroundColor = '#f5365c';
-                        document.getElementById('qexo-friend-btn').innerHTML = "友链申请失败 提示：" + res["msg"];
+                        document.getElementById('qexo-friend-btn').innerHTML = "友链申请失败 提示：" + res.msg;
                     }
                 });
             } else {
@@ -62,14 +63,14 @@ function friend_api() {
                 document.getElementById('qexo-friend-btn').innerHTML = "网络异常！";
             }
         });
-    }
+    };
     if (Qexo_reCaptcha_Key) {
         grecaptcha.ready(function () {
-            grecaptcha.execute(reCaptcha, {action: 'submit'}).then(function (token) {
-                ask(token)
+            grecaptcha.execute(Qexo_reCaptcha_Key, {action: 'submit'}).then(function (token) {
+                ask(token);
             });
         });
     } else {
-        ask()
+        ask();
     }
 }
